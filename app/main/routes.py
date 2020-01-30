@@ -13,12 +13,23 @@ RSS_FEEDS = {
 def index():
   return render_template('index.html')
 
-@main.route('/feed/<string:publication>')
-def feeds(publication):
-  return get_news(publication)
+@main.route('/cnn')
+def cnn():
+  return get_news('cnn')
+
+@main.route('/fox')
+def fox():
+  return get_news('fox')
+
+@main.route('/bbc')
+def bbc():
+  return get_news('bbc')
+
+@main.route('/ioc')
+def ioc():
+  return get_news('ioc')
 
 def get_news(publication):
   feed = feedparser.parse(RSS_FEEDS[publication])
   articles = feed['entries']
-  weather = get_weather('London, UK')
-  return render_template('news.html', articles=articles, publication=publication, weather=weather)
+  return render_template('news.html', articles=articles, publication=publication)
