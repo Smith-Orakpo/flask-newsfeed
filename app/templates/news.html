@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+<span>
+  {% block title %} {{ publication|upper }} News Feed {% endblock title %}
+</span>
+<span>
+  {% block content %}
+  <div class="my-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h3 class="text-center">{{ publication|upper }} News Feed</h3>
+        </div>
+        {% for article in articles %}
+        <div class="col-sm-12">
+          <h4>
+            <a
+              href="{{ article.link }}"
+              class="text-decoration-none text-dark"
+              target="_blank"
+              >{{ article.title }}</a
+            >
+          </h4>
+          <small>{{ article.published }}</small>
+          <p>{{ article.summary }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  {% endblock content %}
+</span>
