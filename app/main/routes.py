@@ -1,5 +1,5 @@
 from app.main import main
-from flask import render_template, request
+from flask import render_template
 import feedparser
 
 RSS_FEEDS = {
@@ -20,5 +20,5 @@ def feeds(publication):
 def get_news(publication):
   feed = feedparser.parse(RSS_FEEDS[publication])
   articles = feed['entries']
-  return render_template('news.html', articles=articles, publication=publication)
-
+  weather = get_weather('London, UK')
+  return render_template('news.html', articles=articles, publication=publication, weather=weather)
